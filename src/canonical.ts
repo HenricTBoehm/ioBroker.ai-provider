@@ -3,6 +3,21 @@ import { createHash } from 'node:crypto';
 import type { AIRequest } from './contracts';
 import { GovernedError } from './errors';
 
+function assertValidUnicode(value: string): void {
+	for (let index = 0; index < value.length; index++) {
+		const codeUnit = value.charCodeAt(index);
+		if (codeUnit >= 0xd800 && codeUnit <= 0xdbff) {
+			const next = value.charCodeAt(index + 1);
+			if (!(next >= 0xdc00 && next <= 0xdfff)) {
+				throw new GovernedError('INVALID_JSON_VALUE', 'Lone UTF-16 surrogates are not allowed');
+			}
+			index++;
+		} else if (codeUnit >= 0xdc00 && codeUnit <= 0xdfff) {
+			throw new GovernedError('INVALID_JSON_VALUE', 'Lone UTF-16 surrogates are not allowed');
+		}
+	}
+}
+
 export function canonicalize(value: unknown): string {
 	const seen = new Set<object>();
 
@@ -10,7 +25,11 @@ export function canonicalize(value: unknown): string {
 		if (current === null) {
 			return 'null';
 		}
-		if (typeof current === 'string' || typeof current === 'boolean') {
+		if (typeof current === 'string') {
+			assertValidUnicode(current);
+			return JSON.stringify(current);
+		}
+		if (typeof current === 'boolean') {
 			return JSON.stringify(current);
 		}
 
@@ -38,6 +57,7 @@ export function canonicalize(value: unknown): string {
 			seen.add(current);
 			const record = current as Record<string, unknown>;
 			const keys = Object.keys(record).sort();
+			keys.forEach(assertValidUnicode);
 			const result = `{${keys.map(key => `${JSON.stringify(key)}:${visit(record[key])}`).join(',')}}`;
 			seen.delete(current);
 			return result;
