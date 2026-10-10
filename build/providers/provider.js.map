@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/providers/provider.ts"],
+  "sourcesContent": ["import type { Capability, ModelRequest, ModelResult, ProviderHealthSnapshot } from '../contracts';\n\nexport interface AIProvider {\n\treadonly id: string;\n\treadonly model: string;\n\treadonly cloud: boolean;\n\treadonly capabilities: readonly Capability[];\n\thealth(signal: AbortSignal): Promise<ProviderHealthSnapshot>;\n\tgenerate(request: ModelRequest, signal: AbortSignal): Promise<ModelResult>;\n\tlistModels(signal: AbortSignal): Promise<string[]>;\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;",
+  "names": []
+}

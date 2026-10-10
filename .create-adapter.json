@@ -1,0 +1,45 @@
+{
+	"cli": true,
+	"target": "directory",
+	"adapterName": "ai-provider",
+	"title": "AI Provider",
+	"description": "Governed local and cloud model inference provider for ioBroker",
+	"keywords": [
+		"ai",
+		"llm",
+		"inference",
+		"governance",
+		"local",
+		"cloud"
+	],
+	"expert": "no",
+	"features": [
+		"adapter"
+	],
+	"adminFeatures": [],
+	"type": "general",
+	"startMode": "daemon",
+	"connectionType": "cloud",
+	"dataSource": "poll",
+	"connectionIndicator": "no",
+	"language": "TypeScript",
+	"nodeVersion": "20",
+	"adminUi": "json",
+	"tools": [
+		"ESLint"
+	],
+	"eslintConfig": "official",
+	"releaseScript": "yes",
+	"devServer": "local",
+	"indentation": "Tab",
+	"quotes": "single",
+	"authorName": "Henric T. Boehm",
+	"authorGithub": "HenricTBoehm",
+	"authorEmail": "HenricTBoehm@users.noreply.github.com",
+	"gitRemoteProtocol": "HTTPS",
+	"gitCommit": "no",
+	"defaultBranch": "main",
+	"license": "MIT License",
+	"dependabot": "yes",
+	"creatorVersion": "3.1.5"
+}

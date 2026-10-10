@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/errors.ts"],
+  "sourcesContent": ["export class GovernedError extends Error {\n\tpublic constructor(\n\t\tpublic readonly code: string,\n\t\tmessage: string,\n\t\tpublic readonly retryable = false,\n\t) {\n\t\tsuper(message);\n\t\tthis.name = 'GovernedError';\n\t}\n}\n\nexport function errorResponse(error: unknown): {\n\tcode: string;\n\tmessage: string;\n\tretryable: boolean;\n} {\n\tif (error instanceof GovernedError) {\n\t\treturn {\n\t\t\tcode: error.code,\n\t\t\tmessage: error.message,\n\t\t\tretryable: error.retryable,\n\t\t};\n\t}\n\n\treturn {\n\t\tcode: 'INTERNAL_ERROR',\n\t\tmessage: error instanceof Error ? error.message : 'Unknown internal error',\n\t\tretryable: false,\n\t};\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAO,MAAM,sBAAsB,MAAM;AAAA,EACjC,YACU,MAChB,SACgB,YAAY,OAC3B;AACD,UAAM,OAAO;AAJG;AAEA;AAGhB,SAAK,OAAO;AAAA,EACb;AACD;AAEO,SAAS,cAAc,OAI5B;AACD,MAAI,iBAAiB,eAAe;AACnC,WAAO;AAAA,MACN,MAAM,MAAM;AAAA,MACZ,SAAS,MAAM;AAAA,MACf,WAAW,MAAM;AAAA,IAClB;AAAA,EACD;AAEA,SAAO;AAAA,IACN,MAAM;AAAA,IACN,SAAS,iBAAiB,QAAQ,MAAM,UAAU;AAAA,IAClD,WAAW;AAAA,EACZ;AACD;",
+  "names": []
+}

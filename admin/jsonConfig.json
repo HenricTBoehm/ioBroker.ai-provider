@@ -1,0 +1,113 @@
+{
+	"i18n": false,
+	"type": "panel",
+	"items": {
+		"governanceHeader": {
+			"type": "header",
+			"text": "Governance",
+			"size": 2
+		},
+		"allowedCallers": {
+			"type": "text",
+			"label": "Allowed canonical callers (comma-separated system.adapter.* instance IDs)",
+			"newLine": true
+		},
+		"requireUserForTaskTypes": {
+			"type": "text",
+			"label": "Task types requiring message.user (comma-separated)",
+			"newLine": true
+		},
+		"localHeader": {
+			"type": "header",
+			"text": "Local OpenAI-compatible provider",
+			"size": 2
+		},
+		"localEnabled": {
+			"type": "checkbox",
+			"label": "Enable local provider",
+			"newLine": true
+		},
+		"localBaseUrl": {
+			"type": "text",
+			"label": "Base URL",
+			"newLine": true
+		},
+		"localModel": {
+			"type": "text",
+			"label": "Model",
+			"newLine": true
+		},
+		"localApiKey": {
+			"type": "password",
+			"label": "API key (optional)",
+			"newLine": true
+		},
+		"cloudHeader": {
+			"type": "header",
+			"text": "OpenAI cloud provider",
+			"size": 2
+		},
+		"openAiEnabled": {
+			"type": "checkbox",
+			"label": "Enable OpenAI",
+			"newLine": true
+		},
+		"openAiBaseUrl": {
+			"type": "text",
+			"label": "Base URL",
+			"newLine": true
+		},
+		"openAiModel": {
+			"type": "text",
+			"label": "Model",
+			"newLine": true
+		},
+		"openAiApiKey": {
+			"type": "password",
+			"label": "API key",
+			"newLine": true
+		},
+		"limitsHeader": {
+			"type": "header",
+			"text": "Lifecycle limits",
+			"size": 2
+		},
+		"healthTtlMs": {
+			"type": "number",
+			"label": "Provider health TTL (ms)",
+			"min": 1000,
+			"newLine": true
+		},
+		"requestTimeoutMs": {
+			"type": "number",
+			"label": "Default request timeout (ms)",
+			"min": 1000,
+			"newLine": true
+		},
+		"maxConcurrency": {
+			"type": "number",
+			"label": "Maximum concurrent requests",
+			"min": 1,
+			"max": 32,
+			"newLine": true
+		},
+		"maxQueue": {
+			"type": "number",
+			"label": "Maximum queued requests",
+			"min": 0,
+			"newLine": true
+		},
+		"idempotencyTtlMs": {
+			"type": "number",
+			"label": "Idempotency cache TTL (ms)",
+			"min": 1000,
+			"newLine": true
+		},
+		"maxRequestRecords": {
+			"type": "number",
+			"label": "Maximum idempotency records",
+			"min": 1,
+			"newLine": true
+		}
+	}
+}

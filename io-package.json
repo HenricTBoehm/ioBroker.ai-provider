@@ -1,0 +1,118 @@
+{
+	"common": {
+		"name": "ai-provider",
+		"version": "0.0.1",
+		"news": {
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"uk": "Початкова версія",
+				"zh-cn": "首次出版"
+			}
+		},
+		"titleLang": {
+			"en": "AI Provider",
+			"de": "KI-Anbieter",
+			"ru": "Поставщик ИИ",
+			"pt": "Provedor de IA",
+			"nl": "AI-aanbieder",
+			"fr": "Fournisseur d'IA",
+			"it": "Fornitore di intelligenza artificiale",
+			"es": "Proveedor de IA",
+			"pl": "Dostawca sztucznej inteligencji",
+			"uk": "Постачальник AI",
+			"zh-cn": "人工智能提供商"
+		},
+		"desc": {
+			"en": "Governed local and cloud model inference provider for ioBroker",
+			"de": "Geregelter lokaler und Cloud-Modell-Inferenzanbieter für ioBroker",
+			"ru": "Поставщик управляемых локальных и облачных моделей для ioBroker",
+			"pt": "Provedor de inferência de modelo local e de nuvem governado para ioBroker",
+			"nl": "Beheerde lokale en cloudmodel-inferentieprovider voor ioBroker",
+			"fr": "Fournisseur d'inférence de modèles locaux et cloud gouvernés pour ioBroker",
+			"it": "Provider di inferenza di modelli locali e cloud governati per ioBroker",
+			"es": "Proveedor de inferencia de modelos gobernados local y en la nube para ioBroker",
+			"pl": "Zarządzany dostawca wnioskowania modelu lokalnego i chmurowego dla ioBroker",
+			"uk": "Керований локальний і хмарний постачальник висновків для ioBroker",
+			"zh-cn": "受管理的 ioBroker 本地和云模型推理提供商"
+		},
+		"authors": [
+			"Henric T. Boehm <HenricTBoehm@users.noreply.github.com>"
+		],
+		"keywords": [
+			"ai",
+			"llm",
+			"inference",
+			"governance",
+			"local",
+			"cloud"
+		],
+		"licenseInformation": {
+			"type": "free",
+			"license": "MIT"
+		},
+		"platform": "Javascript/Node.js",
+		"icon": "ai-provider.png",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/HenricTBoehm/ioBroker.ai-provider/main/admin/ai-provider.png",
+		"readme": "https://github.com/HenricTBoehm/ioBroker.ai-provider/blob/main/README.md",
+		"loglevel": "info",
+		"tier": 3,
+		"mode": "daemon",
+		"type": "general",
+		"compact": true,
+		"supportedMessages": {
+			"custom": true
+		},
+		"connectionType": "cloud",
+		"dataSource": "poll",
+		"adminUI": {
+			"config": "json"
+		},
+		"dependencies": [
+			{
+				"js-controller": ">=7.2.5"
+			}
+		],
+		"globalDependencies": [
+			{
+				"admin": ">=7.0.23"
+			}
+		]
+	},
+	"encryptedNative": [
+		"localApiKey",
+		"openAiApiKey"
+	],
+	"protectedNative": [
+		"localApiKey",
+		"openAiApiKey"
+	],
+	"native": {
+		"allowedCallers": "system.adapter.javascript.0",
+		"requireUserForTaskTypes": "",
+		"localEnabled": true,
+		"localBaseUrl": "http://127.0.0.1:8000/v1",
+		"localModel": "Qwen3-8B",
+		"localApiKey": "",
+		"openAiEnabled": false,
+		"openAiBaseUrl": "https://api.openai.com/v1",
+		"openAiModel": "",
+		"openAiApiKey": "",
+		"healthTtlMs": 30000,
+		"requestTimeoutMs": 30000,
+		"maxConcurrency": 2,
+		"maxQueue": 16,
+		"idempotencyTtlMs": 300000,
+		"maxRequestRecords": 256
+	},
+	"objects": [],
+	"instanceObjects": []
+}
