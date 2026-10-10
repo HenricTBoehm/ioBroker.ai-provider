@@ -10,8 +10,8 @@ function numberFromIeee754(hex: string): number {
 describe('RFC 8785 JSON canonicalization', () => {
 	it('matches the serialization and property-ordering example from sections 3.2.2 and 3.2.3', () => {
 		const input = {
-			numbers: [333333333.33333329, 1e30, 4.5, 0.002, 1e-27],
-			string: "€$\u000f\nA'B\"\\\\\"/",
+			numbers: [numberFromIeee754('41b3de4355555555'), 1e30, 4.5, 0.002, 1e-27],
+			string: '€$\u000f\nA\'B"\\\\"/',
 			literals: [null, true, false],
 		};
 
@@ -22,15 +22,15 @@ describe('RFC 8785 JSON canonicalization', () => {
 	});
 
 	it('sorts property names by their UTF-16 code units as specified in section 3.2.3', () => {
-		const input = {
-			'€': 'Euro Sign',
-			'\r': 'Carriage Return',
-			'דּ': 'Hebrew Letter Dalet With Dagesh',
-			'1': 'One',
-			'😀': 'Emoji: Grinning Face',
-			'': 'Control',
-			'ö': 'Latin Small Letter O With Diaeresis',
-		};
+		const input = Object.fromEntries([
+			['€', 'Euro Sign'],
+			['\r', 'Carriage Return'],
+			['דּ', 'Hebrew Letter Dalet With Dagesh'],
+			['1', 'One'],
+			['😀', 'Emoji: Grinning Face'],
+			['', 'Control'],
+			['ö', 'Latin Small Letter O With Diaeresis'],
+		]);
 
 		assert.equal(
 			canonicalize(input),
