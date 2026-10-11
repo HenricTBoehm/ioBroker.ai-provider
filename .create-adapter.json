@@ -23,7 +23,7 @@
 	"dataSource": "poll",
 	"connectionIndicator": "no",
 	"language": "TypeScript",
-	"nodeVersion": "20",
+	"nodeVersion": "22",
 	"adminUi": "json",
 	"tools": [
 		"ESLint"
