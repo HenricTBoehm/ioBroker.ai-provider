@@ -73,6 +73,8 @@ No silent cloud fallback or output-repair attempt exists in v0.1.
 
 ## Development
 
+Development and CI use Node.js 22.19 or newer. The test matrix covers Node.js 22 and 24.
+
 ```bash
 npm install
 npm run check

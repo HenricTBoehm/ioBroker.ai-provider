@@ -26,13 +26,31 @@ __export(canonical_exports, {
 module.exports = __toCommonJS(canonical_exports);
 var import_node_crypto = require("node:crypto");
 var import_errors = require("./errors");
+function assertValidUnicode(value) {
+  for (let index = 0; index < value.length; index++) {
+    const codeUnit = value.charCodeAt(index);
+    if (codeUnit >= 55296 && codeUnit <= 56319) {
+      const next = value.charCodeAt(index + 1);
+      if (!(next >= 56320 && next <= 57343)) {
+        throw new import_errors.GovernedError("INVALID_JSON_VALUE", "Lone UTF-16 surrogates are not allowed");
+      }
+      index++;
+    } else if (codeUnit >= 56320 && codeUnit <= 57343) {
+      throw new import_errors.GovernedError("INVALID_JSON_VALUE", "Lone UTF-16 surrogates are not allowed");
+    }
+  }
+}
 function canonicalize(value) {
   const seen = /* @__PURE__ */ new Set();
   const visit = (current) => {
     if (current === null) {
       return "null";
     }
-    if (typeof current === "string" || typeof current === "boolean") {
+    if (typeof current === "string") {
+      assertValidUnicode(current);
+      return JSON.stringify(current);
+    }
+    if (typeof current === "boolean") {
       return JSON.stringify(current);
     }
     if (typeof current === "number") {
@@ -57,6 +75,7 @@ function canonicalize(value) {
       seen.add(current);
       const record = current;
       const keys = Object.keys(record).sort();
+      keys.forEach(assertValidUnicode);
       const result = `{${keys.map((key) => `${JSON.stringify(key)}:${visit(record[key])}`).join(",")}}`;
       seen.delete(current);
       return result;
